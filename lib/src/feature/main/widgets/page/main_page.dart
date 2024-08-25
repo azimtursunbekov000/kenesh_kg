@@ -47,6 +47,7 @@ class _MainPageState extends State<MainPage>
             ),
             SizedBox(height: 5),
             TabBar(
+              indicatorWeight: 1,
               controller: _tabController,
               overlayColor: MaterialStateProperty.resolveWith<Color?>(
                 (Set<MaterialState> states) {
@@ -57,25 +58,32 @@ class _MainPageState extends State<MainPage>
                 },
               ),
               padding: EdgeInsets.zero,
-              tabAlignment: TabAlignment.start,
+              indicatorPadding: EdgeInsets.zero,
+              labelPadding: EdgeInsets.symmetric(horizontal: 2),
+              tabAlignment: TabAlignment.center,
               isScrollable: true,
               tabs: [
                 Tab(
-                  child: DropdownMenu<String>(
-                    width: 150,
-                    hintText: 'Парламент',
-                    initialSelection: selectedValue,
-                    onSelected: (String? newValue) {
-                      _onDropdownValueChanged(newValue, 0);
-                    },
-                    dropdownMenuEntries: TabBarDropDownItems.parlamentDropDown
-                        .map(
-                          (element) => DropdownMenuEntry(
-                            value: element,
-                            label: element,
-                          ),
-                        )
-                        .toList(),
+                  child: ConstrainedBox(
+                    constraints:
+                        const BoxConstraints(maxHeight: 90, maxWidth: 200),
+                    child: DropdownMenu<String>(
+                      expandedInsets: EdgeInsets.zero,
+                      width: 150,
+                      hintText: 'Парламент',
+                      initialSelection: selectedValue,
+                      onSelected: (String? newValue) {
+                        _onDropdownValueChanged(newValue, 0);
+                      },
+                      dropdownMenuEntries: TabBarDropDownItems.parlamentDropDown
+                          .map(
+                            (element) => DropdownMenuEntry(
+                              value: element,
+                              label: element,
+                            ),
+                          )
+                          .toList(),
+                    ),
                   ),
                 ),
                 Tab(
@@ -115,58 +123,73 @@ class _MainPageState extends State<MainPage>
                   ),
                 ),
                 Tab(
-                  child: DropdownMenu<String>(
-                    width: 200,
-                    hintText: 'Деятельность ЖК',
-                    initialSelection: selectedValue,
-                    onSelected: (String? newValue) {
-                      _onDropdownValueChanged(newValue, 4);
-                    },
-                    dropdownMenuEntries:
-                        TabBarDropDownItems.deyatelnostJKDropDown
-                            .map(
-                              (element) => DropdownMenuEntry(
-                                value: element,
-                                label: element,
-                              ),
-                            )
-                            .toList(),
+                  child: ConstrainedBox(
+                    constraints:
+                        const BoxConstraints(maxHeight: 90, maxWidth: 200),
+                    child: DropdownMenu<String>(
+                      expandedInsets: EdgeInsets.zero,
+                      // width: 200,
+                      hintText: 'Деятельность ЖК',
+                      initialSelection: selectedValue,
+                      onSelected: (String? newValue) {
+                        _onDropdownValueChanged(newValue, 4);
+                      },
+                      dropdownMenuEntries:
+                          TabBarDropDownItems.deyatelnostJKDropDown
+                              .map(
+                                (element) => DropdownMenuEntry(
+                                  value: element,
+                                  label: element,
+                                ),
+                              )
+                              .toList(),
+                    ),
                   ),
                 ),
                 Tab(
-                  child: DropdownMenu<String>(
-                    width: 200,
-                    hintText: 'Структура ЖК',
-                    initialSelection: selectedValue,
-                    onSelected: (String? newValue) {
-                      _onDropdownValueChanged(newValue, 5);
-                    },
-                    dropdownMenuEntries: TabBarDropDownItems.structuraJKDropDown
-                        .map(
-                          (element) => DropdownMenuEntry(
-                            value: element,
-                            label: element,
-                          ),
-                        )
-                        .toList(),
+                  child: ConstrainedBox(
+                    constraints:
+                        const BoxConstraints(maxHeight: 90, maxWidth: 200),
+                    child: DropdownMenu<String>(
+                      expandedInsets: EdgeInsets.zero,
+                      hintText: 'Структура ЖК',
+                      initialSelection: selectedValue,
+                      onSelected: (String? newValue) {
+                        _onDropdownValueChanged(newValue, 5);
+                      },
+                      dropdownMenuEntries:
+                          TabBarDropDownItems.structuraJKDropDown
+                              .map(
+                                (element) => DropdownMenuEntry(
+                                  value: element,
+                                  label: element,
+                                ),
+                              )
+                              .toList(),
+                    ),
                   ),
                 ),
                 Tab(
-                  child: DropdownMenu<String>(
-                    width: 150,
-                    hintText: 'Медиа',
-                    initialSelection: selectedValue,
-                    onSelected: (String? newValue) {
-                      _onDropdownValueChanged(newValue, 6);
-                    },
-                    dropdownMenuEntries: TabBarDropDownItems.mediaDropDown
-                        .map(
-                          (element) => DropdownMenuEntry(
-                            value: element,
-                            label: element,
-                          ),
-                        )
-                        .toList(),
+                  child: ConstrainedBox(
+                    constraints:
+                        const BoxConstraints(maxHeight: 90, maxWidth: 150),
+                    child: DropdownMenu<String>(
+                      expandedInsets: EdgeInsets.zero,
+                      width: 150,
+                      hintText: 'Медиа',
+                      initialSelection: selectedValue,
+                      onSelected: (String? newValue) {
+                        _onDropdownValueChanged(newValue, 6);
+                      },
+                      dropdownMenuEntries: TabBarDropDownItems.mediaDropDown
+                          .map(
+                            (element) => DropdownMenuEntry(
+                              value: element,
+                              label: element,
+                            ),
+                          )
+                          .toList(),
+                    ),
                   ),
                 ),
               ],
