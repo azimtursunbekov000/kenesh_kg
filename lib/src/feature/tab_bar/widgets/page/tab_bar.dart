@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kenesh_kg/src/feature/deputies/widgets/page/deputies_page.dart';
 
 import '../widgets.dart';
 
@@ -148,7 +149,7 @@ class _MainPageState extends State<TabBarPage>
                 Center(child: Text("Car Tab")),
                 Center(child: Text("Transit Tab")),
                 Center(child: Text("Bike Tab")),
-                Center(child: Text("Bike Tab")),
+                DeputiesPage(),
                 Center(child: Text("Bike Tab")),
                 Center(child: Text("Bike Tab")),
                 Center(child: Text("Bike Tab")),

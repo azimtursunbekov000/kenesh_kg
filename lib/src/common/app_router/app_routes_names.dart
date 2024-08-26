@@ -1,6 +1,6 @@
 class AppRoutesNames {
-  static const String mainPage = 'mainPage';
-  // static const String startingPage = "startingPage";
+  static const String tabBarPage = 'tabBarPage';
+  static const String deputiesPage = "deputiesPage";
   // static const String kgMapPage = "kgMapPage";
   // static const String cardSelectionPage = "cardSelectionPage";
   // static const String combinationOfSentencePage = "combinationOfSentencePage";
