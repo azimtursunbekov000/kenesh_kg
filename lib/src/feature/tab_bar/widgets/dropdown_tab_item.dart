@@ -22,6 +22,8 @@ class DropdownTabItem extends StatelessWidget {
       child: ConstrainedBox(
         constraints: BoxConstraints(maxWidth: maxWidth),
         child: DropdownMenu<String>(
+          enableSearch: false,
+          enableFilter: false,
           expandedInsets: EdgeInsets.zero,
           hintText: hintText,
           initialSelection: initialSelection,
