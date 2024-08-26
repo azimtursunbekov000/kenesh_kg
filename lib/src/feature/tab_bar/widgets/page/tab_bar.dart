@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../common/common.dart';
 import '../widgets.dart';
 
 class TabBarPage extends StatefulWidget {
@@ -48,9 +49,9 @@ class _MainPageState extends State<TabBarPage>
           TabBar(
             indicatorWeight: 1,
             controller: _tabController,
-            overlayColor: MaterialStateProperty.resolveWith<Color?>(
-              (Set<MaterialState> states) {
-                if (states.contains(MaterialState.hovered)) {
+            overlayColor: WidgetStateProperty.resolveWith<Color?>(
+              (Set<WidgetState> states) {
+                if (states.contains(WidgetState.hovered)) {
                   return Colors.transparent;
                 }
                 return null;
@@ -79,12 +80,12 @@ class _MainPageState extends State<TabBarPage>
                     .toList(),
               ),
               TabBarItem(
-                width: 100,
-                text: 'Торага',
+                width: 105,
+                text: S.of(context).chairman,
               ),
               TabBarItem(
                 width: 200,
-                text: 'Заместители Торага',
+                text: S.of(context).vice_chairmen,
               ),
               TabBarItem(
                 width: 100,
@@ -146,8 +147,8 @@ class _MainPageState extends State<TabBarPage>
               physics: NeverScrollableScrollPhysics(),
               children: [
                 Center(child: Text("Car Tab")),
-                Center(child: Text("Transit Tab")),
-                Center(child: Text("Bike Tab")),
+                Center(child: ChairmanPage()),
+                Center(child: ViceChairmanPage()),
                 Center(child: Text("Bike Tab")),
                 Center(child: Text("Bike Tab")),
                 Center(child: Text("Bike Tab")),

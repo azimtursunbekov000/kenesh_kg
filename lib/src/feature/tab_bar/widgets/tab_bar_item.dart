@@ -20,7 +20,12 @@ class TabBarItem extends StatelessWidget {
           border: Border.all(width: 1, color: Colors.black45),
           borderRadius: BorderRadius.circular(4),
         ),
-        child: Text(text),
+        child: Text(
+          text,
+          textAlign: TextAlign.center,
+          overflow: TextOverflow.ellipsis,
+          maxLines: 2,
+        ),
       ),
     );
   }
