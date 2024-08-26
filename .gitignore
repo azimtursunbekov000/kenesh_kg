@@ -37,6 +37,12 @@ app.*.symbols
 # Obfuscation related
 app.*.map.json
 
+**/*.freezed.dart
+**/*.g.dart
+lib/generated/
+lib/l10n
+
+
 # Android Studio will place build artifacts here
 /android/app/debug
 /android/app/profile

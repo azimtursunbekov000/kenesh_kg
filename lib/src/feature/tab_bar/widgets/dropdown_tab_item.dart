@@ -8,13 +8,13 @@ class DropdownTabItem extends StatelessWidget {
   final Function(String?)? onSelected;
 
   const DropdownTabItem({
-    Key? key,
+    super.key,
     required this.maxWidth,
     required this.hintText,
     required this.dropdownMenuEntries,
     this.initialSelection,
     this.onSelected,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

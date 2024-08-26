@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-
 import 'package:kenesh_kg/src/common/common.dart';
 
 class AppContext extends StatelessWidget {

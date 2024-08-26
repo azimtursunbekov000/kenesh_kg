@@ -49,6 +49,28 @@ class S {
   static S? maybeOf(BuildContext context) {
     return Localizations.of<S>(context, S);
   }
+
+  // skipped getter for the 'the_supreme_council ' key
+
+  /// `Төрага`
+  String get chairman {
+    return Intl.message(
+      'Төрага',
+      name: 'chairman',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Төраганын Орун Басарлары`
+  String get vice_chairmen {
+    return Intl.message(
+      'Төраганын Орун Басарлары',
+      name: 'vice_chairmen',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
@@ -56,8 +78,8 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
 
   List<Locale> get supportedLocales {
     return const <Locale>[
-      Locale.fromSubtags(languageCode: 'en'),
       Locale.fromSubtags(languageCode: 'ky'),
+      Locale.fromSubtags(languageCode: 'en'),
       Locale.fromSubtags(languageCode: 'ru'),
     ];
   }
