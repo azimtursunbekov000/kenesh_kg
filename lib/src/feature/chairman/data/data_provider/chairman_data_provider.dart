@@ -6,22 +6,22 @@ import 'package:kenesh_kg/src/common/common.dart';
 import '../../model/model.dart';
 
 abstract interface class IChairmanDataProvider {
-  Future<List<ChairmanModel>> getAllChairman();
+  Future<ResponseModel> getAllChairman();
 }
 
 class ChairmanDataProvider implements IChairmanDataProvider {
   ApiRequester apiRequester = ApiRequester();
 
   @override
-  Future<List<ChairmanModel>> getAllChairman() async {
+  Future<ResponseModel> getAllChairman() async {
     try {
-      Response response = await apiRequester.toGet('speakers/');
+      Response response = await apiRequester.toGet('speakers');
       log('getAllChairman response statusCode == ${response.statusCode}');
       log('getAllChairman response data == ${response.data}');
 
       final responseModel = ResponseModel.fromJson(response.data);
 
-      return responseModel.results;
+      return responseModel;
     } catch (e) {
       log(e.toString());
       throw CatchException.convertException(e);

@@ -13,8 +13,8 @@ class ChairmanBloc extends Bloc<ChairmanEvent, ChairmanState> {
 
   ChairmanBloc({required this.chairmanRepository})
       : super(
-          const ChairmanState.initial(
-            chairmanModels: [],
+          ChairmanState.initial(
+            responseModel: ResponseModel(count: 0, results: []),
           ),
         ) {
     on<ChairmanEvent>(
@@ -26,38 +26,33 @@ class ChairmanBloc extends Bloc<ChairmanEvent, ChairmanState> {
   }
 
   Future<void> _onChairmanInit(Emitter<ChairmanState> emit) async {
-    emit(
-      ChairmanState.initial(
-        chairmanModels: await chairmanRepository.getAllChairman(),
-      ),
-    );
+    try {
+      final responseModel = await chairmanRepository.getAllChairman();
+      emit(ChairmanState.loadSuccess(responseModel: responseModel));
+    } catch (e) {
+      emit(ChairmanState.loadFailure(error: e.toString()));
+    }
   }
 
   Future<void> _onGetAllChairmen(Emitter<ChairmanState> emit) async {
-    List<ChairmanModel> chairman = [];
-    state.maybeWhen(
-      initial: (chairmanModels) {
-        chairman = chairmanModels;
-      },
-      loadInProgress: (chairmanModels) {
-        chairman = chairmanModels;
-      },
-      loadSuccess: (chairmanModels) {
-        chairman = chairmanModels;
-      },
-      loadFailure: (chairmanModels) {
-        chairman = chairmanModels;
-      },
-      orElse: () {},
+    ResponseModel previousResponseModel = state.maybeWhen(
+      initial: (responseModel) => responseModel,
+      loadInProgress: (responseModel) => responseModel,
+      loadSuccess: (responseModel) => responseModel,
+      orElse: () => const ResponseModel(count: 0, results: []),
     );
-    emit(ChairmanState.loadInProgress(previousChairmanModels: chairman));
+
+    emit(ChairmanState.loadInProgress(
+        previousResponseModel: previousResponseModel));
 
     try {
-      final newChairmanModels = await chairmanRepository.getAllChairman();
-      emit(ChairmanState.loadSuccess(chairmanModels: newChairmanModels));
+      final responseModel = await chairmanRepository.getAllChairman();
+      emit(ChairmanState.loadSuccess(responseModel: responseModel));
     } catch (error) {
       emit(
-        ChairmanState.loadFailure(previousChairmanModels: chairman),
+        ChairmanState.loadFailure(
+          error: error.toString(),
+        ),
       );
     }
   }

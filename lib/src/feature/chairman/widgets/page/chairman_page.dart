@@ -13,58 +13,96 @@ class ChairmanPage extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 20,
-          vertical: 10,
+          vertical: 20,
         ),
         child: BlocBuilder<ChairmanBloc, ChairmanState>(
           builder: (context, state) {
-            List<ChairmanModel> chairmanList = [];
+            if (state is ChairmanLoadInProgress) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+
+            if (state is ChairmanLoadFailure) {
+              return Center(
+                child: Text('Ошибка загрузки: ${state.error}'),
+              );
+            }
+
+            ResponseModel responseList =
+                const ResponseModel(count: 0, results: []);
 
             state.maybeWhen(
-              initial: (chairmanModels) {
-                chairmanList = chairmanModels;
+              initial: (responseModel) {
+                responseList = responseModel;
               },
-              loadInProgress: (chairmanModels) {
-                chairmanList = chairmanModels;
+              loadInProgress: (responseModel) {
+                responseList = responseModel;
               },
-              loadSuccess: (chairmanModels) {
-                chairmanList = chairmanModels;
-              },
-              loadFailure: (chairmanModels) {
-                chairmanList = chairmanModels;
+              loadSuccess: (responseModel) {
+                responseList = responseModel;
               },
               orElse: () {},
             );
 
-            if (chairmanList.isEmpty) {
-              return Center(child: Text('No data available'));
-            }
+            final results = responseList.results ?? [];
+            final firstChairman = results.isNotEmpty ? results[0] : null;
 
-            return Row(
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      width: 300,
-                      height: 400,
-                      decoration: BoxDecoration(
-                        color: Colors.green,
-                        borderRadius: BorderRadius.circular(18),
-                      ),
+            return SingleChildScrollView(
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Left Column
+                  Expanded(
+                    flex: 0,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(20),
+                          child: Image.network(
+                            firstChairman?.photo ?? '',
+                            width: 500,
+                            height: 400,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        Text(
+                          firstChairman?.full_name ?? '',
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 25,
+                            color: Colors.black,
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        Text(
+                          firstChairman?.job_title ?? '',
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ],
                     ),
-                    SizedBox(height: 10),
-                    Text(chairmanList[0].full_name),
-                    SizedBox(height: 20),
-                    Text('Пост'),
-                  ],
-                ),
-                SizedBox(width: 20),
-                Column(
-                  children: [
-                    Text('Информация о нем'),
-                  ],
-                ),
-              ],
+                  ),
+                  const SizedBox(width: 50),
+                  // Right Column
+                  Expanded(
+                    flex: 1,
+                    child: Column(
+                      children: [
+                        Text(
+                          firstChairman?.biography ?? '',
+                          textAlign: TextAlign.justify,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             );
           },
         ),
