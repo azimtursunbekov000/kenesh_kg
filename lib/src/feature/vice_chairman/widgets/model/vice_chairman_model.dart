@@ -6,10 +6,10 @@ part 'vice_chairman_model.g.dart';
 @freezed
 class ViceChairmanResponseModel with _$ViceChairmanResponseModel {
   const factory ViceChairmanResponseModel({
-    required int count,
+    int? count,
     String? next,
     String? previous,
-    required List<ViceChairmanModel> results,
+    List<ViceChairmanModel>? results,
   }) = _ViceChairmanResponseModel;
 
   factory ViceChairmanResponseModel.fromJson(Map<String, dynamic> json) =>
@@ -19,15 +19,15 @@ class ViceChairmanResponseModel with _$ViceChairmanResponseModel {
 @freezed
 class ViceChairmanModel with _$ViceChairmanModel {
   const factory ViceChairmanModel({
-    required int id,
-    required String full_name,
-    required String photo,
-    required String biographyRendered,
-    required String biography,
-    required String biographyKgRendered,
-    required String biographyKg,
-    required String jobTitle,
-    required String jobTitleKg,
+    int? id,
+    String? full_name,
+    String? photo,
+    String? biographyRendered,
+    String? biography,
+    String? biographyKgRendered,
+    String? biographyKg,
+    String? job_title,
+    String? job_title_kg,
   }) = _ViceChairmanModel;
 
   factory ViceChairmanModel.fromJson(Map<String, dynamic> json) =>

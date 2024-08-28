@@ -22,7 +22,7 @@ class BlocScope extends StatelessWidget {
         BlocProvider<ViceChairmanBloc>(
           create: (context) => ViceChairmanBloc(
             viceChairmanRepository: context.read<ViceChairmanRepository>(),
-          ),
+          )..add(const InitViceChairmanEvent()),
         ),
       ],
       child: child,
