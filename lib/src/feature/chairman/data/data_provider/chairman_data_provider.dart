@@ -15,7 +15,7 @@ class ChairmanDataProvider implements IChairmanDataProvider {
   @override
   Future<List<ChairmanModel>> getAllChairman() async {
     try {
-      Response response = await apiRequester.toGet('speakers');
+      Response response = await apiRequester.toGet('speakers/');
       log('getAllChairman response statusCode == ${response.statusCode}');
       log('getAllChairman response data == ${response.data}');
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kenesh_kg/src/feature/app/widget/app_context.dart';
+import 'package:kenesh_kg/src/feature/app/initialization/runner.dart';
 
 void main() {
   runApp(const KeneshKgApp());
@@ -10,6 +10,6 @@ class KeneshKgApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppContext();
+    return Runner();
   }
 }
