@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kenesh_kg/src/feature/chairman/data/data.dart';
+import 'package:kenesh_kg/src/feature/vice_chairman/widgets/data/data.dart';
 
 class RepositoryScope extends StatelessWidget {
   const RepositoryScope({required this.child, super.key});
@@ -14,6 +15,11 @@ class RepositoryScope extends StatelessWidget {
         RepositoryProvider<ChairmanRepository>(
           create: (context) => ChairmanRepository(
             chairmanDataProvider: context.read<IChairmanDataProvider>(),
+          ),
+        ),
+        RepositoryProvider<ViceChairmanRepository>(
+          create: (context) => ViceChairmanRepository(
+            viceChairmanDataProvider: context.read<IViceChairmanDataProvider>(),
           ),
         ),
       ],

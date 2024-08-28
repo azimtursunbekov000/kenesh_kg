@@ -13,7 +13,7 @@ class ChairmanBloc extends Bloc<ChairmanEvent, ChairmanState> {
 
   ChairmanBloc({required this.chairmanRepository})
       : super(
-          ChairmanState.initial(
+          const ChairmanState.initial(
             responseModel: ResponseModel(count: 0, results: []),
           ),
         ) {

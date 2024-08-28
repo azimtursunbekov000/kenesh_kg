@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kenesh_kg/src/feature/chairman/data/data.dart';
+import 'package:kenesh_kg/src/feature/vice_chairman/widgets/data/data.dart';
 
 class DataProviderScope extends StatelessWidget {
   const DataProviderScope({required this.child, super.key});
@@ -13,6 +14,9 @@ class DataProviderScope extends StatelessWidget {
       providers: [
         RepositoryProvider<IChairmanDataProvider>(
           create: (context) => ChairmanDataProvider(),
+        ),
+        RepositoryProvider<IViceChairmanDataProvider>(
+          create: (context) => ViceChairmanDataProvider(),
         ),
       ],
       child: child,
