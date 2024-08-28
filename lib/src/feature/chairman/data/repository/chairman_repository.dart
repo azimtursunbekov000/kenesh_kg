@@ -6,7 +6,7 @@ class ChairmanRepository {
 
   ChairmanRepository({required this.chairmanDataProvider});
 
-  Future<List<ChairmanModel>> getAllChairman() {
+  Future<ResponseModel> getAllChairman() {
     return chairmanDataProvider.getAllChairman();
   }
 }
