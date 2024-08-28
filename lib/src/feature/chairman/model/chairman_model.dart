@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'chairman_model.freezed.dart';
+part 'chairman_model.g.dart';
 
 @freezed
 class ResponseModel with _$ResponseModel {
@@ -10,6 +11,9 @@ class ResponseModel with _$ResponseModel {
     String? previous,
     required List<ChairmanModel> results,
   }) = _ResponseModel;
+
+  factory ResponseModel.fromJson(Map<String, dynamic> json) =>
+      _$ResponseModelFromJson(json);
 }
 
 @freezed
@@ -25,4 +29,7 @@ class ChairmanModel with _$ChairmanModel {
     required String job_title,
     required String job_title_kg,
   }) = _ChairmanModel;
+
+  factory ChairmanModel.fromJson(Map<String, dynamic> json) =>
+      _$ChairmanModelFromJson(json);
 }
