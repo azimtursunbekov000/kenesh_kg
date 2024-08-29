@@ -38,16 +38,16 @@ class DeputiesSliverGrid extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 10),
-                const Text(
-                  "Ыйман-Нуру",
+                Text(
+                  deputy.faction?.name ?? '',
                   style: TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.w500,
                     color: Colors.black,
                   ),
                 ),
-                const Text(
-                  "Комитет по международным делам, обороне, безопасности и миграции",
+                Text(
+                  deputy.committee?.name ?? '',
                   style: TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.w500,
@@ -58,7 +58,7 @@ class DeputiesSliverGrid extends StatelessWidget {
             ),
           );
         },
-        childCount: deputiesModels.length, // Используем длину списка моделей
+        childCount: deputiesModels.length,
       ),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         childAspectRatio: 0.6,

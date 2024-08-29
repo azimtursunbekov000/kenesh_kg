@@ -143,19 +143,23 @@ class ViceChairmanPage extends StatelessWidget {
         ),
       ),
       floatingActionButton: SizedBox(
-        height: 80,
-        width: 80,
-        child: FloatingActionButton(
-          backgroundColor: Colors.white,
-          onPressed: () {
-            context.push('/');
-          },
-          child: const Icon(
-            Icons.home_filled,
-            color: Colors.black,
+        height: 100,
+        width: 100,
+        child: Padding(
+          padding: const EdgeInsets.only(bottom: 10),
+          child: FloatingActionButton(
+            backgroundColor: Colors.white,
+            onPressed: () {
+              context.push('/');
+            },
+            child: const Icon(
+              Icons.home_filled,
+              color: Colors.black,
+            ),
           ),
         ),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 }

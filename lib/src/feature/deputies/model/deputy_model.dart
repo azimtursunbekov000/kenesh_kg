@@ -27,10 +27,32 @@ class DeputyModel with _$DeputyModel {
     String? phone,
     String? email,
     String? facebook,
-    int? committee,
-    int? faction,
   }) = _DeputyModel;
 
   factory DeputyModel.fromJson(Map<String, dynamic> json) =>
       _$DeputyModelFromJson(json);
+}
+
+@freezed
+class Committee with _$Committee {
+  const factory Committee({
+    int? id,
+    String? name,
+    String? nameKg,
+  }) = _Committee;
+
+  factory Committee.fromJson(Map<String, dynamic> json) =>
+      _$CommitteeFromJson(json);
+}
+
+@freezed
+class Faction with _$Faction {
+  const factory Faction({
+    int? id,
+    String? name,
+    String? nameKg,
+  }) = _Faction;
+
+  factory Faction.fromJson(Map<String, dynamic> json) =>
+      _$FactionFromJson(json);
 }
