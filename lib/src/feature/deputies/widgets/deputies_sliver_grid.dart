@@ -40,7 +40,7 @@ class DeputiesSliverGrid extends StatelessWidget {
                 const SizedBox(height: 10),
                 Text(
                   deputy.faction?.name ?? '',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.w500,
                     color: Colors.black,
@@ -48,7 +48,7 @@ class DeputiesSliverGrid extends StatelessWidget {
                 ),
                 Text(
                   deputy.committee?.name ?? '',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.w500,
                     color: Colors.lightBlueAccent,
