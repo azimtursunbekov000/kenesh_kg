@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:kenesh_kg/src/common/common.dart';
 import 'package:kenesh_kg/src/feature/vice_chairman/widgets/model/model.dart';
 
@@ -13,6 +14,12 @@ class ViceChairmanPage extends StatelessWidget {
     print('Building ViceChairmanPage...');
 
     return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        title: Text(
+          S.of(context).vice_chairmen,
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 20,
@@ -69,9 +76,6 @@ class ViceChairmanPage extends StatelessWidget {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  S.of(context).vice_chairmen,
-                ),
                 Expanded(
                   child: GridView.builder(
                     gridDelegate:
@@ -79,7 +83,7 @@ class ViceChairmanPage extends StatelessWidget {
                       crossAxisCount: 4,
                       mainAxisSpacing: 30,
                       crossAxisSpacing: 24,
-                      childAspectRatio: 1,
+                      childAspectRatio: 0.5,
                     ),
                     itemCount: responseList.results?.length,
                     itemBuilder: (context, index) {
@@ -136,6 +140,20 @@ class ViceChairmanPage extends StatelessWidget {
               ],
             );
           },
+        ),
+      ),
+      floatingActionButton: SizedBox(
+        height: 80,
+        width: 80,
+        child: FloatingActionButton(
+          backgroundColor: Colors.white,
+          onPressed: () {
+            context.push('/');
+          },
+          child: const Icon(
+            Icons.home_filled,
+            color: Colors.black,
+          ),
         ),
       ),
     );

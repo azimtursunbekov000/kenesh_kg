@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:kenesh_kg/src/feature/deputies/model/deputies_model.dart';
 
 class DeputiesSliverGrid extends StatelessWidget {
   const DeputiesSliverGrid({
