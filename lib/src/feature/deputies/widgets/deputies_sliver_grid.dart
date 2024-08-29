@@ -39,7 +39,9 @@ class DeputiesSliverGrid extends StatelessWidget {
                 ),
                 const SizedBox(height: 10),
                 Text(
-                  deputy.faction?.name ?? '',
+                  deputy.faction?.isNotEmpty ?? false
+                      ? deputy.faction!.first.name ?? ''
+                      : 'No Faction',
                   style: const TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.w500,
@@ -47,7 +49,9 @@ class DeputiesSliverGrid extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  deputy.committee?.name ?? '',
+                  deputy.committee?.isNotEmpty ?? false
+                      ? deputy.committee!.first.name ?? ''
+                      : 'No Committee',
                   style: const TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.w500,
