@@ -47,6 +47,8 @@ class DeputiesSliverGrid extends StatelessWidget {
                     fontWeight: FontWeight.w500,
                     color: Colors.black,
                   ),
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 2,
                 ),
                 Text(
                   deputy.committee?.isNotEmpty ?? false
@@ -57,6 +59,8 @@ class DeputiesSliverGrid extends StatelessWidget {
                     fontWeight: FontWeight.w500,
                     color: Colors.lightBlueAccent,
                   ),
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 2,
                 ),
               ],
             ),
