@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:kenesh_kg/src/feature/deputies/model/deputy_model.dart';
-import 'package:kenesh_kg/src/feature/deputies/widgets/deputies_sliver_grid.dart';
+
+import '../../bloc/deputies_bloc.dart';
+import '../deputies_sliver_grid.dart'; // Импортируйте ваш Bloc
 
 class DeputiesPage extends StatefulWidget {
   const DeputiesPage({super.key});
@@ -19,6 +21,14 @@ class _DeputiesPageState extends State<DeputiesPage> {
   List<String> factionsList = [
     'Парламентская фракция Ынтымак',
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    context
+        .read<DeputiesBloc>()
+        .add(const DeputiesEvent.init()); // Инициализируем Bloc
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -136,15 +146,32 @@ class _DeputiesPageState extends State<DeputiesPage> {
                   ],
                 ),
               ),
-              DeputiesSliverGrid(
-                deputiesModel: DeputiesModel(
-                  id: 1,
-                  fullName: 'Шакиев Нурланбек Тургунбекович',
-                  pathToImage: 'assets/images/shakiev_image.png',
-                  phone: '+996777777777',
-                  email: 'shakiev@gamil.com',
-                  faction: 1,
-                ),
+              BlocBuilder<DeputiesBloc, DeputiesState>(
+                builder: (context, state) {
+                  if (state is DeputiesLoadInProgress) {
+                    return const SliverFillRemaining(
+                      child: Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    );
+                  } else if (state is DeputiesLoadFailure) {
+                    return SliverFillRemaining(
+                      child: Center(
+                        child: Text('Ошибка загрузки: ${state.error}'),
+                      ),
+                    );
+                  } else if (state is DeputiesLoadSuccess) {
+                    return DeputiesSliverGrid(
+                      deputiesModels: state.responseModel.results ?? [],
+                    );
+                  } else {
+                    return const SliverFillRemaining(
+                      child: Center(
+                        child: Text('Нет данных для отображения'),
+                      ),
+                    );
+                  }
+                },
               ),
             ],
           ),

@@ -1,51 +1,64 @@
 import 'package:flutter/material.dart';
+import 'package:kenesh_kg/src/feature/deputies/model/deputy_model.dart';
 
 class DeputiesSliverGrid extends StatelessWidget {
   const DeputiesSliverGrid({
     super.key,
-    required this.deputiesModel,
+    required this.deputiesModels,
   });
 
-  final DeputiesModel deputiesModel;
+  final List<DeputyModel> deputiesModels;
 
   @override
   Widget build(BuildContext context) {
     return SliverGrid(
       delegate: SliverChildBuilderDelegate(
         (BuildContext context, int index) {
+          final deputy = deputiesModels[index];
+
           return Container(
-            margin: EdgeInsets.all(14),
+            margin: const EdgeInsets.all(14),
             child: Column(
               children: [
-                Image.asset(
-                  deputiesModel.pathToImage,
-                  height: 320,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: Image.network(
+                    deputy.photo ?? '',
+                    height: 320,
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                  ),
                 ),
-                SizedBox(height: 10),
                 Text(
-                  deputiesModel.fullName,
-                  style: TextStyle(
+                  deputy.fullName ?? '',
+                  style: const TextStyle(
                     fontSize: 26,
                     fontWeight: FontWeight.w700,
                     color: Colors.black,
                   ),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Text(
-                  'Депутатская группа "Мекенчил"',
-                  style: TextStyle(
+                  "Ыйман-Нуру",
+                  style: const TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.w500,
-                    color: Colors.grey,
+                    color: Colors.black,
+                  ),
+                ),
+                Text(
+                  "Комитет по международным делам, обороне, безопасности и миграции",
+                  style: const TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.lightBlueAccent,
                   ),
                 ),
               ],
             ),
           );
         },
-        childCount: 20,
+        childCount: deputiesModels.length, // Используем длину списка моделей
       ),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         childAspectRatio: 0.6,
