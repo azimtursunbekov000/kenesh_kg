@@ -31,6 +31,7 @@ class MainButtonWidget extends StatelessWidget {
             ),
           ),
         ),
+        const SizedBox(height: 8),
         Text(
           title,
           style: const TextStyle(
