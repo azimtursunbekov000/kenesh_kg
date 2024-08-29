@@ -38,17 +38,17 @@ class DeputiesSliverGrid extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 10),
-                Text(
+                const Text(
                   "Ыйман-Нуру",
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 22,
                     fontWeight: FontWeight.w500,
                     color: Colors.black,
                   ),
                 ),
-                Text(
+                const Text(
                   "Комитет по международным делам, обороне, безопасности и миграции",
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.w500,
                     color: Colors.lightBlueAccent,
