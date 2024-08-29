@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kenesh_kg/src/feature/chairman/bloc/chairman_bloc.dart';
 import 'package:kenesh_kg/src/feature/chairman/data/data.dart';
+import 'package:kenesh_kg/src/feature/deputies/bloc/deputies_bloc.dart';
+import 'package:kenesh_kg/src/feature/deputies/data/data.dart';
 import 'package:kenesh_kg/src/feature/vice_chairman/widgets/bloc/vice_chairman_bloc.dart';
 import 'package:kenesh_kg/src/feature/vice_chairman/widgets/data/data.dart';
 
@@ -23,6 +25,11 @@ class BlocScope extends StatelessWidget {
           create: (context) => ViceChairmanBloc(
             viceChairmanRepository: context.read<ViceChairmanRepository>(),
           )..add(const InitViceChairmanEvent()),
+        ),
+        BlocProvider<DeputiesBloc>(
+          create: (context) => DeputiesBloc(
+            deputiesRepository: context.read<DeputiesRepository>(),
+          ),
         ),
       ],
       child: child,
