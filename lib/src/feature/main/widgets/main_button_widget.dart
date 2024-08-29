@@ -35,7 +35,10 @@ class MainButtonWidget extends StatelessWidget {
         Text(
           title,
           style: const TextStyle(
-              fontSize: 15, color: Colors.white, fontWeight: FontWeight.bold),
+            fontSize: 15,
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
         )
       ],
     );
