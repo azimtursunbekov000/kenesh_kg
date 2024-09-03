@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
-class MainButtonWidget extends StatelessWidget {
+class MainButtonWidget extends StatefulWidget {
   final VoidCallback onTap;
   final String title;
 
@@ -12,35 +11,59 @@ class MainButtonWidget extends StatelessWidget {
   });
 
   @override
+  State<MainButtonWidget> createState() => _MainButtonWidgetState();
+}
+
+class _MainButtonWidgetState extends State<MainButtonWidget> {
+  bool _isHovered = false;
+
+  @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        InkWell(
-          onTap: onTap,
-          child: SizedBox(
-            width: 100,
-            height: 100,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(25),
-              child: ColoredBox(
-                color: Color(0xff0000FF),
-                child: SvgPicture.asset(
-                  'assets/images/logo_of_the_jogorku_kenesh.svg',
+    return MouseRegion(
+      onEnter: (_) => _onHover(true),
+      onExit: (_) => _onHover(false),
+      child: GestureDetector(
+        onTap: widget.onTap,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            AnimatedContainer(
+              duration: const Duration(milliseconds: 200),
+              width: _isHovered ? 110 : 100,
+              height: _isHovered ? 110 : 100,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(25),
+                child: ColoredBox(
+                  color: const Color(0xff006DCC),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 14),
+                    child: Image.asset(
+                      'assets/images/logoWhite.png',
+                      width: _isHovered ? 110 : 100,
+                      height: _isHovered ? 110 : 100,
+                    ),
+                  ),
                 ),
               ),
             ),
-          ),
+            const SizedBox(height: 8),
+            Text(
+              widget.title,
+              style: const TextStyle(
+                fontSize: 15,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
         ),
-        const SizedBox(height: 8),
-        Text(
-          title,
-          style: const TextStyle(
-            fontSize: 15,
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-          ),
-        )
-      ],
+      ),
     );
+  }
+
+  void _onHover(bool isHovered) {
+    setState(() {
+      _isHovered = isHovered;
+    });
   }
 }

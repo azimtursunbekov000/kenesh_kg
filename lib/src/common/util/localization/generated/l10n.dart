@@ -50,7 +50,15 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  // skipped getter for the 'the_supreme_council ' key
+  /// `жогорку_кенеш`
+  String get the_supreme_council {
+    return Intl.message(
+      'жогорку_кенеш',
+      name: 'the_supreme_council',
+      desc: '',
+      args: [],
+    );
+  }
 
   /// `Төрага`
   String get chairman {
@@ -67,6 +75,16 @@ class S {
     return Intl.message(
       'Төраганын Орун Басарлары',
       name: 'vice_chairmen',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Төраганын Ишмердүүлүгү`
+  String get activities {
+    return Intl.message(
+      'Төраганын Ишмердүүлүгү',
+      name: 'activities',
       desc: '',
       args: [],
     );

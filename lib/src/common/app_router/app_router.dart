@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kenesh_kg/src/common/barrel_file/all_pages.dart';
+import 'package:kenesh_kg/src/feature/chairman/widgets/page/video_gallery_page.dart';
 import 'package:kenesh_kg/src/feature/deputies/widgets/page/deputies_page.dart';
 import 'package:kenesh_kg/src/feature/main/widgets/page/main_page.dart';
 
@@ -27,6 +28,13 @@ final GoRouter router = GoRouter(
           name: AppRoutesNames.chairmanPage,
           path: 'chairman',
           builder: (context, state) => ChairmanPage(),
+          routes: [
+            GoRoute(
+              name: AppRoutesNames.videoGallery,
+              path: 'videoGallery',
+              builder: (context, state) => VideoGalleryPage(),
+            ),
+          ],
         ),
         GoRoute(
           name: AppRoutesNames.viceChairmanPage,

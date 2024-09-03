@@ -25,7 +25,7 @@ class ChairmanModel with _$ChairmanModel {
     String? biographyRendered,
     String? biography,
     String? biographyKgRendered,
-    String? biographyKg,
+    String? biography_kg,
     String? job_title,
     String? job_title_kg,
   }) = _ChairmanModel;
