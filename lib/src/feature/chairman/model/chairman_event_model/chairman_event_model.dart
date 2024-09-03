@@ -24,12 +24,23 @@ class ResultModel with _$ResultModel {
     String? title_kg,
     String? description,
     String? description_kg,
-    List<String>? photos,
+    List<PhotoModel>? photos,
     List<VideoModel>? videos,
   }) = _ResultModel;
 
   factory ResultModel.fromJson(Map<String, dynamic> json) =>
       _$ResultModelFromJson(json);
+}
+
+@freezed
+class PhotoModel with _$PhotoModel {
+  const factory PhotoModel({
+    int? id,
+    String? image,
+  }) = _PhotoModel;
+
+  factory PhotoModel.fromJson(Map<String, dynamic> json) =>
+      _$PhotoModelFromJson(json);
 }
 
 @freezed

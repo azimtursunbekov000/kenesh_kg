@@ -28,6 +28,12 @@ class RepositoryScope extends StatelessWidget {
             viceChairmanDataProvider: context.read<IDeputiesDataProvider>(),
           ),
         ),
+        RepositoryProvider<ChairmanEventRepository>(
+          create: (context) => ChairmanEventRepository(
+            chairmanEventDataProvider:
+                context.read<IChairmanEventDataProvider>(),
+          ),
+        ),
       ],
       child: child,
     );

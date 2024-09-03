@@ -22,6 +22,9 @@ class DataProviderScope extends StatelessWidget {
         RepositoryProvider<IDeputiesDataProvider>(
           create: (context) => DeputiesDataProvider(),
         ),
+        RepositoryProvider<IChairmanEventDataProvider>(
+          create: (context) => ChairmanEventDataProvider(),
+        ),
       ],
       child: child,
     );
