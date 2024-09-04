@@ -78,71 +78,88 @@ class _ChairmanPageState extends State<ChairmanPage> {
                 ),
                 const SizedBox(width: 20),
                 Expanded(
-                  flex: 0,
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 40),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          firstChairman?.full_name ?? '',
-                          style: const TextStyle(
-                            fontSize: 30,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                          ),
-                        ),
-                        const SizedBox(height: 150),
-                        Center(
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(20),
-                            child: Image.network(
-                              firstChairman?.photo ?? '',
-                              width: 400,
-                              height: 400,
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                        ),
-                        Text(
-                          firstChairman?.full_name ?? '',
-                          textAlign: TextAlign.justify,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                            color: Colors.black,
-                          ),
-                        ),
-                        SizedBox(height: 10),
-                        Text(
-                          firstChairman?.job_title ?? '',
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 15,
-                            color: Colors.black,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Expanded(
-                  flex: 1,
-                  child: ListView(
-                    shrinkWrap: true,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Column(
-                        children: [
-                          SizedBox(height: 200),
-                          Text(
-                            removeHtmlTags(firstChairman?.biography_kg ?? ''),
-                            style: const TextStyle(
-                              fontWeight: FontWeight.w500,
-                              fontSize: 14,
-                              color: Colors.black,
+                      Text(
+                        firstChairman?.full_name ?? '',
+                        style: const TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      Expanded(
+                        child: Row(
+                          children: [
+                            Expanded(
+                              flex: 0,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(20),
+                                    child: Image.network(
+                                      firstChairman?.photo ?? '',
+                                      width: 400,
+                                      height: 400,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                  SizedBox(height: 10),
+                                  Text(
+                                    firstChairman?.full_name ?? '',
+                                    textAlign: TextAlign.justify,
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  SizedBox(height: 10),
+                                  Text(
+                                    firstChairman?.job_title ?? '',
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
+                            SizedBox(width: 12),
+                            Expanded(
+                              flex: 1,
+                              child: ListView(
+                                shrinkWrap: true,
+                                padding: const EdgeInsets.only(
+                                  bottom: 12,
+                                  left: 12,
+                                  right: 12,
+                                ),
+                                children: [
+                                  Column(
+                                    children: [
+                                      Text(
+                                        removeHtmlTags(
+                                            firstChairman?.biography_kg ?? ''),
+                                        style: const TextStyle(
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 14,
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
