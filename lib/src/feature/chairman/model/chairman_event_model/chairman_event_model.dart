@@ -47,7 +47,7 @@ class PhotoModel with _$PhotoModel {
 class VideoModel with _$VideoModel {
   const factory VideoModel({
     int? id,
-    String? video_file,
+    String? video_url,
   }) = _VideoModel;
 
   factory VideoModel.fromJson(Map<String, dynamic> json) =>

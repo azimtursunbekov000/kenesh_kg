@@ -4,6 +4,7 @@ class AppRoutesNames {
   static const String chairmanPage = "chairmanPage";
   static const String viceChairmanPage = "viceChairmanPage";
   static const String videoGallery = "videoGallery";
+  static const String videoGalleryDetail = "videoGalleryDetail";
 
 // static const String kgMapPage = "kgMapPage";
   // static const String cardSelectionPage = "cardSelectionPage";

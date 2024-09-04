@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:kenesh_kg/src/common/app_router/app_routes_names.dart';
 
 import '../../bloc/bloc.dart';
 
@@ -42,39 +43,44 @@ class VideoGalleryPage extends StatelessWidget {
                         return const SizedBox.shrink();
                       }
 
-                      return Container(
-                        margin: const EdgeInsets.all(14),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            if (event.photos?.isNotEmpty ?? false)
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(10),
-                                child: Image.network(
-                                  event.photos?[index].image ?? '',
-                                  height: 430,
-                                  width: double.infinity,
-                                  fit: BoxFit.cover,
+                      return InkWell(
+                        onTap: () {
+                          context.pushNamed(AppRoutesNames.videoGalleryDetail);
+                        },
+                        child: Container(
+                          margin: const EdgeInsets.all(14),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              if (event.photos?.isNotEmpty ?? false)
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(10),
+                                  child: Image.network(
+                                    event.photos?[index].image ?? '',
+                                    height: 430,
+                                    width: double.infinity,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              const SizedBox(height: 10),
+                              Text(
+                                event.title ?? 'No Title',
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
-                            const SizedBox(height: 10),
-                            Text(
-                              event.title ?? 'No Title',
-                              style: const TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
+                              Text(
+                                event.description ?? 'No Description',
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                  color: Colors.black54,
+                                ),
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 2,
                               ),
-                            ),
-                            Text(
-                              event.description ?? 'No Description',
-                              style: const TextStyle(
-                                fontSize: 14,
-                                color: Colors.black54,
-                              ),
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 2,
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       );
                     },
