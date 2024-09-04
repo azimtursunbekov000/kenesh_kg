@@ -1,7 +1,10 @@
+import 'dart:io';
+import 'package:desktop_webview_window/desktop_webview_window.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:kenesh_kg/src/common/app_router/app_routes_names.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:path/path.dart' as p;
 
 import '../../bloc/bloc.dart';
 
@@ -13,9 +16,6 @@ class VideoGalleryPage extends StatelessWidget {
     context.read<ChairmanEventBloc>().add(const ChairmanEventEvent.init());
 
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-      ),
       body: BlocBuilder<ChairmanEventBloc, ChairmanEventState>(
         builder: (context, state) {
           if (state is ChairmanEventLoadInProgress) {
@@ -44,8 +44,21 @@ class VideoGalleryPage extends StatelessWidget {
                       }
 
                       return InkWell(
-                        onTap: () {
-                          context.pushNamed(AppRoutesNames.videoGalleryDetail);
+                        onTap: () async {
+                          // Открываем WebView с указанной ссылкой
+                          var windowWidth = MediaQuery.sizeOf(context).width;
+                          final webview = await WebviewWindow.create(
+                            configuration: CreateConfiguration(
+                              windowHeight: 900,
+                              windowWidth: windowWidth.round(),
+                              title: "Video WebView",
+                              titleBarTopPadding: 0,
+                              titleBarHeight: 0,
+                              userDataFolderWindows: await _getWebViewPath(),
+                            ),
+                          );
+                          webview.launch(
+                              '${event.videos!.first.video_url! + '?fs=1'}');
                         },
                         child: Container(
                           margin: const EdgeInsets.all(14),
@@ -120,6 +133,14 @@ class VideoGalleryPage extends StatelessWidget {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+    );
+  }
+
+  Future<String> _getWebViewPath() async {
+    final document = await getApplicationDocumentsDirectory();
+    return p.join(
+      document.path,
+      'desktop_webview_window',
     );
   }
 }

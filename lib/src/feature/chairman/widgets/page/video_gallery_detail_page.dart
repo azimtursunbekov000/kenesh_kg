@@ -44,8 +44,13 @@ class VideoGalleryDetailPage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           MediaKitPlayerWidget(
-                            videoUrl: event.videos?[0].video_url ?? '',
+                            videoUrl:
+                                'https://www.youtube.com/watch?v=l1K3li0Q740',
                           ),
+                          // YoutubeVideoPlayer(
+                          //   videoUrl:
+                          //       'https://www.youtube.com/watch?v=l1K3li0Q740',
+                          // ),
                           const SizedBox(height: 10),
                           Text(
                             event.title ?? 'No Title',

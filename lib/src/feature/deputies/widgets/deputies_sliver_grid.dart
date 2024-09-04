@@ -69,7 +69,7 @@ class DeputiesSliverGrid extends StatelessWidget {
         childCount: deputiesModels.length,
       ),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        childAspectRatio: 0.6,
+        childAspectRatio: 6 / 11,
         crossAxisCount: 4,
         crossAxisSpacing: 0,
         mainAxisSpacing: 0,
