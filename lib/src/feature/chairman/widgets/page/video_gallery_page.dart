@@ -1,10 +1,9 @@
-import 'dart:io';
 import 'package:desktop_webview_window/desktop_webview_window.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
+import 'package:path_provider/path_provider.dart';
 
 import '../../bloc/bloc.dart';
 
@@ -45,7 +44,6 @@ class VideoGalleryPage extends StatelessWidget {
 
                       return InkWell(
                         onTap: () async {
-                          // Открываем WebView с указанной ссылкой
                           var windowWidth = MediaQuery.sizeOf(context).width;
                           final webview = await WebviewWindow.create(
                             configuration: CreateConfiguration(
@@ -58,7 +56,7 @@ class VideoGalleryPage extends StatelessWidget {
                             ),
                           );
                           webview.launch(
-                              '${event.videos!.first.video_url! + '?fs=1'}');
+                              '${event.videos?.first.video_url ?? ''}?fs=1');
                         },
                         child: Container(
                           margin: const EdgeInsets.all(14),
@@ -69,7 +67,7 @@ class VideoGalleryPage extends StatelessWidget {
                                 ClipRRect(
                                   borderRadius: BorderRadius.circular(10),
                                   child: Image.network(
-                                    event.photos?[index].image ?? '',
+                                    event.photos!.first.image ?? '',
                                     height: 430,
                                     width: double.infinity,
                                     fit: BoxFit.cover,
